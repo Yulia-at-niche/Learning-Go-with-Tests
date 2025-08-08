@@ -9,14 +9,14 @@ func TestHello(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
-		got := Hello("")
+		got := Hello("d")
 		want := "Hello, World"
 		assertCorrectMessage(t, got, want)
 	})
 }
 
 func assertCorrectMessage(t testing.TB, got, want string) {
-	t.Helper()
+	t.Helper() // This tells the test suite the this method is a helper. Doing this will make test failures report the line number it failed on in TestHello() (EX: line 14) instead of here in assertCorrectMessage() (EX: line 19)
 	if got != want {
 		t.Errorf("got %q want %q", got, want)
 	}
