@@ -3,8 +3,8 @@ package iteration
 import "testing"
 
 func TestRepeater(t *testing.T) {
-	repeating := Repeater("x")
-	expected := "xxxxx"
+	repeating := Repeater("x", 3)
+	expected := "xxx"
 
 	if repeating != expected {
 		t.Errorf("Expected %q, got %q", expected, repeating)
@@ -13,6 +13,6 @@ func TestRepeater(t *testing.T) {
 
 func BenchmarkRepeat(b *testing.B) {
 	for b.Loop() {
-		Repeater("a")
+		Repeater("a", 2)
 	}
 }
