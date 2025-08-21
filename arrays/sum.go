@@ -19,3 +19,15 @@ func SumAll(slices ...[]int) []int {
 	}
 	return sums
 }
+
+// A tail is a collection of all items except for the first one i.e head. This function takes the numbers of the tail and sums them
+func SumAllTails(slices ...[]int) []int {
+	var sumTails []int
+
+	for _, slice := range slices {
+		tail := slice[1:]
+		sumTails = append(sumTails, Sum(tail))
+	}
+
+	return sumTails
+}

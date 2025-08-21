@@ -19,12 +19,26 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
-	t.Run("", func(t *testing.T) {
+	t.Run("Collection of any size", func(t *testing.T) {
 		sliceOne := []int{1, 2, 3} // sum 6
 		sliceTwo := []int{1, 10}   //sum 11
 
 		got := SumAll(sliceOne, sliceTwo)
 		want := []int{6, 11}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %d, want %d, given %v and %v", got, want, sliceOne, sliceTwo)
+		}
+	})
+}
+
+func TestSumAllTails(t *testing.T) {
+	t.Run("", func(t *testing.T) {
+		sliceOne := []int{1, 2, 8} // 10
+		sliceTwo := []int{10}      // 0
+
+		got := SumAllTails(sliceOne, sliceTwo)
+		want := []int{10, 0}
 
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %d, want %d, given %v and %v", got, want, sliceOne, sliceTwo)
