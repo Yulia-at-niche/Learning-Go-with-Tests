@@ -36,7 +36,7 @@ Rectangle in the declaration
 
 To put it all together:
 func (receiverVar ReceiverType) identifier(argsIfAny) returnType { // End of the declaration
-// Begin the method logic that binds to the identifier
+	// ...Begin the method logic that binds to the identifier
 }
 */
 
@@ -58,7 +58,7 @@ type Triangle struct {
 }
 
 func (t Triangle) Area() float64 {
-	return t.Base * t.Height
+	return (t.Base * t.Height) * 0.5
 }
 
 func Perimeter(rectangle Rectangle) float64 {
