@@ -12,28 +12,19 @@ func TestPerimeter(t *testing.T) {
 	}
 
 }
-
 func TestArea(t *testing.T) {
-	// By using Shape this is decoupled from specific shapes. Someone could write a Triangle test so long as there's a Triangle struct with an Area() method
-	checkArea := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Area()
-		if got != want {
-			t.Errorf("got %g, want %g", got, want)
+	areaTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{12, 6}, 72.0},
+		{Circle{10}, 314.1592653589793},
+	}
+
+	for _, test := range areaTests {
+		got := test.shape.Area()
+		if got != test.want {
+			t.Errorf("got %g want %g", got, test.want)
 		}
 	}
-	t.Run("Rectangle", func(t *testing.T) {
-		rectangle := Rectangle{10.0, 5.5}
-		want := 55.0
-
-		checkArea(t, rectangle, want)
-	})
-	t.Run("Circle", func(t *testing.T) {
-		circle := Circle{10.0}
-		want := 314.1592653589793
-
-		checkArea(t, circle, want)
-
-	})
-
 }
