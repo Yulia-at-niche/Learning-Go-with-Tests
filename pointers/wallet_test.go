@@ -1,6 +1,8 @@
 package pointers
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestWallet(t *testing.T) {
 	// To keep the struct's fields private and safe from outside influence we're not setting any values here, nor are we accessing them directly.
