@@ -4,9 +4,10 @@ import "testing"
 
 func TestSearch(t *testing.T) {
 	t.Run("", func(t *testing.T) {
-		dictionary := map[string]string{"test": "this is a test"}
+		//dictionary := map[string]string{"test": "this is a test"}
+		dictionary := Dictionary{"test": "this is a test"}
 
-		got := Search(dictionary, "test")
+		got := dictionary.Search("test")
 		want := "this is a test"
 
 		assertStringMatch(t, dictionary, want, got)
