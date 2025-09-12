@@ -9,9 +9,14 @@ func TestSearch(t *testing.T) {
 		got := Search(dictionary, "test")
 		want := "this is a test"
 
-		if got != want {
-			t.Errorf("got %q, wnat %q, given %q", got, want, "test")
-		}
+		assertStringMatch(t, dictionary, want, got)
 
 	})
+}
+
+func assertStringMatch(t testing.TB, given map[string]string, got, want string) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %q, wnat %q, given %q", got, want, "test")
+	}
 }
