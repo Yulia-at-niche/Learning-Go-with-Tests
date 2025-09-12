@@ -12,15 +12,14 @@ func TestSearch(t *testing.T) {
 
 	})
 	t.Run("unknown word", func(t *testing.T) {
-		_, err := dictionary.Search("unknown")
-		want := "could not find what you are looking for"
+		_, got := dictionary.Search("unknown")
+		want := ErrWordNotFound
 
-		if err == nil {
+		if got == nil {
 			t.Fatal("expected error, got none")
 		}
 
-		assertStringMatch(t, dictionary, err.Error(), want)
-
+		assertError(t, got, want)
 	})
 }
 
@@ -28,5 +27,17 @@ func assertStringMatch(t testing.TB, given map[string]string, got, want string) 
 	t.Helper()
 	if got != want {
 		t.Errorf("got %q, want %q, given %q", got, want, given)
+	}
+}
+
+func assertError(t testing.TB, got, want error) {
+	t.Helper()
+
+	if got == nil {
+		t.Fatal("expected error, did not get one")
+	}
+
+	if got != want {
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
