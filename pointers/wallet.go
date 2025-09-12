@@ -18,13 +18,15 @@ type Wallet struct {
 func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance += amount
 }
+
 func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }
+
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 	if amount > w.Balance() {
 		// errors.New makes a new error with a custom message
-		return errors.New("oh no")
+		return errors.New("cannot complete transaction, insufficient funds")
 	}
 	w.balance -= amount
 	return nil
