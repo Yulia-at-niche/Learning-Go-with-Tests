@@ -23,6 +23,22 @@ func TestSearch(t *testing.T) {
 	})
 }
 
+func TestAdd(t *testing.T) {
+	t.Run("add a new word", func(t *testing.T) {
+		dictionary := Dictionary{}
+		dictionary.Add("test", "this is a test")
+
+		want := "this is a test"
+		got, err := dictionary.Search("test")
+
+		if err != nil {
+			t.Fatal("should have found word:", err)
+		}
+
+		assertStringMatch(t, dictionary, got, want)
+	})
+}
+
 func assertStringMatch(t testing.TB, given map[string]string, got, want string) {
 	t.Helper()
 	if got != want {
