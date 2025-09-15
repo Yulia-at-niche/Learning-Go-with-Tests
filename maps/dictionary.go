@@ -40,6 +40,21 @@ func (d Dictionary) Update(word, definition string) error {
 	return nil
 }
 
+func (d Dictionary) Delete(word string) error {
+	_, err := d.Search(word)
+
+	switch err {
+	case ErrWordNotFound:
+		return ErrWordDoesNotExist
+	case nil:
+		// Built in function 'delete' takes a map and key
+		delete(d, word)
+	default:
+		return err
+	}
+	return nil
+}
+
 var (
 	ErrWordNotFound     = DictionaryErr("could not find the word you are looking for")
 	ErrWordExists       = DictionaryErr("word already exists, cannot add")
