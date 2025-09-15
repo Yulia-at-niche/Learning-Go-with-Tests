@@ -30,15 +30,18 @@ func TestAdd(t *testing.T) {
 		definition := "this is a test"
 		dictionary.Add(word, definition)
 
-		want := definition
-		got, err := dictionary.Search(word)
-
-		if err != nil {
-			t.Fatal("should have found word:", err)
-		}
-
-		assertStringMatch(t, dictionary, got, want)
+		assertDefinition(t, dictionary, word, definition)
 	})
+}
+func assertDefinition(t testing.TB, dictionary Dictionary, word, definition string) {
+	t.Helper()
+	got, err := dictionary.Search(word)
+
+	if err != nil {
+		t.Fatal("should have found word:", err)
+	}
+
+	assertStringMatch(t, dictionary, got, definition)
 }
 
 func assertStringMatch(t testing.TB, given map[string]string, got, want string) {
