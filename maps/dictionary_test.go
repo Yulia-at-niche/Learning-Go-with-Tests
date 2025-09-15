@@ -26,10 +26,12 @@ func TestSearch(t *testing.T) {
 func TestAdd(t *testing.T) {
 	t.Run("add a new word", func(t *testing.T) {
 		dictionary := Dictionary{}
-		dictionary.Add("test", "this is a test")
+		word := "test"
+		definition := "this is a test"
+		dictionary.Add(word, definition)
 
-		want := "this is a test"
-		got, err := dictionary.Search("test")
+		want := definition
+		got, err := dictionary.Search(word)
 
 		if err != nil {
 			t.Fatal("should have found word:", err)
