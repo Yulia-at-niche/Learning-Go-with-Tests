@@ -25,7 +25,7 @@ func (s *SpyCountdownOperations) Sleep() {
 	s.Calls = append(s.Calls, sleep)
 }
 
-// This mock of the Sleep() function that the Sleeper interface stipulates. This one will append the word "write" to the Call field's array
+// This one will serve to mock the io.Writer Countdown() needs for the print calls it makes. It will append the word "write" to the Call field's array. It can do this because it is implementing the requirements for the io.Writer interface
 func (s *SpyCountdownOperations) Write(p []byte) (n int, err error) {
 	s.Calls = append(s.Calls, write)
 	// since the return types are given names in the declaration using just 'return' is sufficient to implicitly return both values
@@ -58,6 +58,9 @@ Go!`
 	})
 	t.Run("test order of calls: sleep is called before every print", func(t *testing.T) {
 		spySleepPrinter := &SpyCountdownOperations{}
+
+		// Go knows which method is appropriate to call because the methods match the interface required
+		// To match that interface the method's signature and name must exactly match the interface
 		Countdown(spySleepPrinter, spySleepPrinter)
 
 		want := []string{
